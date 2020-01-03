@@ -1,0 +1,40 @@
+<template name="checklisteditingdialog">
+{{#if checklisteditingdialog}}
+  {{> processingdialog}}
+<div class="processingdialog">
+ <div class="mask"> </div>
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="checklisteditclose cancel">&times;</button>
+      <h3>{{checklisttitle}}</h3>
+    <div class="newtask-checklist">
+      <input type="text" id="add-newtask-checklist" value="" />
+      <input type="text" id="add-newtask-context-checklist" value="" />
+    </div>
+
+    </div>
+
+    <div class="modal-body">
+<input type="checkbox" class="overallchecklistcheckbox" checked>
+  <ul id="task_list" class="checklist">
+    {{#each tasks}}
+      {{#if waiting}}
+      {{else}}
+        {{> task_checklist_item}}
+      {{/if}}
+    {{/each}}
+
+    {{#each tasks2}}
+      {{#if waiting}}
+      {{else}}
+        {{> task_checklist_item2}}
+      {{/if}}
+    {{/each}}
+
+  </ul>
+
+</div>
+</div>
+</div>
+{{/if}}
+</template>

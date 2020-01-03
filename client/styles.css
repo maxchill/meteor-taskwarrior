@@ -1,45 +1,75 @@
 /* CSS declarations go here */
-#task_list .task_item {
-position: relative;
-width: 775px;
+h3.multicontext-title {
+margin-right: 20px;
 }
-
-#task_list .close {
-position: relative;
-top: 3px;
+#loginButtons {
 float: left;
-right: -755px;
-padding-left: 7px;
-right: -782px;
+}
+#categories-container{
+float: right;
+}
+#categories, h2.title {
+display: none;
+}
+.dueclock {
+text-align: right;
+background-color: inherit;
+}
+#task_list .task_item, #project_list .task_item, #focusproject_list .task_item {
+position: relative;
+width: auto;
+margin: 0;
+}
+#project_list .projpip.close, #focusproject_list .projclose.close, #project_list .projclose.close, #focusproject_list .projpip.close {
+clear: both;
+float: left;
+
+  position: relative;
+  top: -45px;
+display: block;
 }
 
-.kickstart, .reviewproject {
+/*
+.contclose.close {
+top: 21px;
+  left: 20px;
+  clear: none;
+}
+*/
+
+.contclose.close, .contcip.close {
+float: left;
+padding: 20px 10px 20px 0px;
+}
+.kickstart {
 float: right;
 height: 20px;
-margin-right: 24px;
+margin-right: 6px;
 }
 
 .kickstart {
 width: 50px;
-}
-
-.reviewproject {
-position: relative;
-top: -30px;
+//position: absolute;
+right: 41px;
+float: right;
 }
 
 body {
 background-image: url(/texturetastic_gray.png);
+margin: 0;
+padding: 0;
 }
-#task_list li.task_item p, #task_list li.task_item:hover p{
+#focusproject_list li.task_item p, #project_list li.task_item p, #focusproject_list li.task-item:hover p, #project_list li.task-item:hover p {
 overflow-wrap: break-word;
-}
-#task_list li.task_item:hover #doing-project {
-visibility: visible;
+display: inline;
 }
 #add-newtask, #btnNewTask {
 margin: 15px 0px 15px 10px;
 float: left;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 50;
 }
 .title {
 float: left;
@@ -51,22 +81,35 @@ clear: all;
 float: left;
 }
 #lendlib{
-width:835px;
+//width:835px;
+width: auto;
+height: auto;
 margin:0 auto;
 }
 #categorybuttons{
 width:100%;
 }
-#task_list{
+#task_list, #project_list, #focusproject_list{
 list-style:none;
 margin:0;
 padding:0;
+clear: both;
 }
-#task_list li{
+#focusproject_list #task_list, #project_list #task_list {
+//clear: none;
+top: -35px;
+  position: relative;
+}
+#task_list li, #active_project_list li{
 list-style:none;
 margin:5px;
 }
-#task_list li.task_item:hover{
+.active-project ul li {
+list-style: none;
+margin: 5px;
+clear: both;
+}
+#task_list li.task_item:hover, #active_project_list li.task_item:hover{
 background-color:#fc6;
 color:#630;
 }
@@ -99,7 +142,7 @@ margin:15px 15px 15px 10px;
 margin-right:20px;
 }
 
-.tt-dropdown-menu {
+.tt-menu {
 width: 422px;
 margin-top: 12px;
 padding: 8px 0;
@@ -113,12 +156,12 @@ border-radius: 8px;
 -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
 box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
-.tt-suggestion p {
+.tt-suggestion {
 padding: 9px;
 margin:0px;
 background: #FFFD90;
 }
-.tt-is-under-cursor p {
+.tt-is-under-cursor {
 background: #007F00;
 color: #FFB;
 }
@@ -129,16 +172,6 @@ max-height:550px;
 .btn-inverse:active, .btn-inverse.active {
 background-color: #008000;
 }
-#doing-project{
-float: right;
-height: 20px;
-background-color: gray;
-padding: 5px;
-position: relative;
-top: -30px;
-visibility: hidden;
-}
-
 /* mobile css 
 #task_list .task_item{
 font-size:40px;
@@ -186,7 +219,9 @@ font-size: 14px;
 
 #categories .twitter-typeahead {
 position: relative;
-left: 67px;
+//left: 67px;
+float: left;
+z-index: 1;
 }
 
 .tt-dropdown-menu {
@@ -199,11 +234,11 @@ width: 520px;
 min-height: 500px;
 }
 
-#task_list.checklist .task_item, #task_list.alarmset .task_item {
+#task_list.checklist .task_item, #task_list.alarmset .task_item, #project_list.checklist .task_item, #project_list.alarmset .task_item, #focusproject_list.checklist .task_item, #focusproject_list.alarmset .task_item {
 width: 450px;
 }
 
-#task_list.checklist .close, #task_list.alarmset .close {
+#task_list.checklist .close, #task_list.alarmset .close, #project_list.checklist .close, #project_list.alarmset .close, #focusproject_list.checklist .close, #focusproject_list.alarmset .close {
 right: -432px;
 }
 
@@ -223,6 +258,244 @@ left: 481px;
 z-index: 3;
 }
 
-.processingdialog .modal {
-z-index: 2;
+.processingdialog, .processingdialog .modal {
+//z-index: 2;
+height: 90%;
+width: 90%;
+margin: auto;
+left: 5%;
+top: 5%;
+}
+
+.projectcolor {
+background: #f7ecb5;
+}
+
+.processingdialog .modal-header h3 {
+line-height: 80%;
+}
+
+.processingdialog .modal-body {
+max-height: 80%;
+}
+
+.processingdialog .modal-header {
+max-height: 33%;
+}
+
+.processingdialog .modal-body {
+max-height: 67%;
+}
+
+.processingdialog .modal-footer {
+max-height: 33%;
+}
+
+#focuscontextpicker li, #contextpicker li, #inactivecontextpicker li {
+list-style-type: none;
+clear: both;
+float: left;
+}
+
+#focuscontextpicker .btn, #contextpicker .btn, #inactivecontextpicker .btn {
+width: 20px;
+height: 20px;
+margin: 5px 0;
+font-size: 2em;
+}
+
+#project-picker input {
+  width: 456px;
+}
+
+.newtask-org {
+clear: both;
+}
+
+#toast-container {
+right: 12px;
+left: auto;
+}
+
+.mit {
+/*
+  float: right;
+  margin: 0 5px;
+*/
+}
+
+h1, h2, h3, h4, h5 {
+  float: left;
+}
+
+.active-project h4 {
+  float: none;
+  clear: both;
+}
+
+.sorting_mits, .sorting_wips {
+position: relative;
+left: 20px;
+top: 15px;
+float: left;
+}
+
+.sorting_wips {
+margin-bottom: 10px;
+top: 5px;
+clear: both;
+}
+
+.active-project .project-item p {
+  margin-bottom: 37px;
+}
+
+.choosesequential {
+width: 64px;
+float: right;
+}
+
+.modal-header h3, .modal-header h6 {
+float: none;
+}
+
+#task_list .choosechecklistitem{
+position: relative;
+top: 0;
+float: right;
+margin-right: 6px;
+}
+
+#task_list .mitproj {
+position: relative;
+top: 0;
+float: left;
+margin-right: 6px;
+}
+
+.closecontext {
+  position: relative;
+  top: 14px;
+  left: 10px;
+margin: 0 20px 0 0;
+float: left;
+}
+
+.loading{
+  position: relative;
+  height: 100px;
+  width: 100%;
+}
+.load-more-unprocessed, .load-more-previouscalendar, .load-fewer-previouscalendar, .load-more-calendar, .load-fewer-calendar, .load-more-focuscontextpicker, .load-more-contextpicker, .load-more-context, .load-more-projectedcontext, .load-more-inactivecontextpicker , .load-more-mits, .load-more-readandreview, .load-more-waitingfors, .load-more-focusprojects, .load-more-projects, .load-more-somedaymaybeprojects, .load-more-projectlesssomedaymaybes{
+  text-align:center;
+  background:#eee;
+  border: 1px solid #ddd;
+  display:block;
+  padding: 10px;
+}
+
+.load-more-project {
+display: inline-block;
+  width: 200px;
+  text-align: center;
+}
+
+.load-more-project a {
+}
+
+ul#focuscontextpicker, ul#contextpicker, ul#inactivecontextpicker {
+display: inline-block;
+width: 100%;
+padding: 0;
+margin: 0;
+}
+
+#focuscontextpicker li, #contextpicker li, #inactivecontextpicker li {
+padding: 0 20px;
+}
+
+
+.startprocessing-button {
+clear: both;
+}
+
+h3, h4 {
+clear: both;
+}
+
+#focusproject_list .reviewproject, #project_list .reviewproject {
+position: relative;
+  top: -33px;
+  left: 20px;
+}
+
+.newdocument, .newchecklist, .newalarmset, .defaultcontext, .archiveproject {
+  position: relative;
+  top: -35px;
+}
+
+#contextpicker .contextlocation, #contextpicker input {
+  position: relative;
+  top: 10px;
+  width: 150px;
+  float: left;
+  display: inline-block;
+  font-size: 1em;
+}
+
+.active-project .project_item ul {
+margin-bottom: 40px;
+}
+
+.alert.alert-warning {
+position: fixed;
+z-index: 40;
+background-color: red;
+}
+
+.newaor, .newcontextcategory {
+float: left;
+clear: both;
+}
+
+#selectAorForm label, #selectContextCategoryForm label {
+display: none;
+}
+
+.clearfix {
+float: left;
+clear: both;
+}
+
+.overdue {
+background-image: url(/overdue.png);
+background-repeat: no-repeat;
+background-position: bottom -20px right;
+background-color: grey;
+}
+
+.inboxmarker {
+background-image: url(/zeroinbox.png);
+background-repeat: no-repeat;
+background-position: top -108px right;
+}
+
+.bigben {
+background-image: url(/bigben.png);
+background-repeat: no-repeat;
+background-position: bottom -25px right;
+background-size: 150px auto;
+}
+
+#task_list li.overdue:hover{
+background-color: darkgray;
+}
+
+.overdue p {
+color: yellow;
+}
+
+.energy0, .energy1, .energy2, .energy3, .energy4, .energy5, .energy6, .energy7 {
+padding: 5px;
+margin: 5px;
 }

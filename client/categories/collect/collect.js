@@ -1,9 +1,11 @@
 Session.set('adding_newtask', false);
 
 //test to see whether to render the collect input
-Template.collect.new_task = function () {
-  return Session.equals('adding_newtask',true);
-};
+Template.collect.helpers({
+  new_task: function () {
+    return Session.equals('adding_newtask',true);
+  },
+})
 
 //events for the collect template
 Template.collect.events({
@@ -20,10 +22,17 @@ Template.collect.events({
       {
         var formattednow = formattedNow()
         var uuid = guid()
-        Tasksbacklog.insert({description: e.target.value, entry: formattednow, status: "pending", tags: ['inbox'], uuid: uuid})
-        Taskspending.insert({description: e.target.value, entry: formattednow, status: "pending", tags: ['inbox'], uuid: uuid})
+        if (Taskspending.findOne({rank: {$exists: 1}}, {sort: {rank: 1}})) {
+          var rank = Taskspending.findOne({rank: {$exists: 1}}, {sort: {rank: 1}}).rank - 1
+        }
+        else {
+          var rank = 0
+        }
+        Tasksbacklog.insert({description: e.target.value, owner: Meteor.userId(), entry: formattednow, status: "pending", tags: ['inbox'], uuid: uuid, rank: rank, energylevel: 4})
+        Taskspending.insert({description: e.target.value, owner: Meteor.userId(), entry: formattednow, status: "pending", tags: ['inbox'], uuid: uuid, rank: rank, energylevel: 4})
+        Session.set("gtdmode", "reviewmode")
+        Session.set("energylevel", "calendaronly")
         Session.set('adding_newtask', false);
-        Toast.success('Collected a task', 'Daily Review', {displayDuration: 5000});
        }
      }
   },

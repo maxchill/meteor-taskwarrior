@@ -1,0 +1,99 @@
+<template name="timeview">
+{{#unless calendaronly}}
+{{> aorfilter}}
+{{#if domode}}
+{{> contextfilter}}
+{{> profilter}}
+{{else}}
+{{> profilter}}
+{{> contextfilter}}
+{{/if}}
+{{/unless}}
+<h6 style="float: left; clear: both;">Energy: {{> energyfilter}}</h6>
+<h6 style="float: left; clear: both;">Mode: <span class="btn reviewmode {{reviewmode}}">Define Some Work</span><span class="btn domode {{domode}}">Do Defined Work</span></h6>
+<div style="clear: both;">{{> dailyweeklysomeday}}</div>
+
+{{#unless previouscalendarhidden}}
+{{> previouscalendar}}
+{{/unless}}
+
+  <ul id="task_list">
+    {{#each overduetasks}}
+
+    {{> calendartask}}
+
+    {{/each}}
+
+    {{#unless calendaronly}}
+    {{#if domode}}
+    {{#each dochecklisttask}}
+    {{> orgtask_todo_item}}
+    {{/each}} <!-- dochecklisttask -->
+    {{#each dononchecklisttask}}
+    {{> orgtask_todo_item}}
+    {{/each}} <!-- dononchecklisttask -->
+    {{else}} {{#if reviewmodeenergylevelinboxonly}}
+    {{#unless hasaorfocus}}
+    {{#each timeviewtaskinbox}}
+    {{> orgtask_todo_item}}
+    {{/each}}
+    {{else}}
+    {{#each aortimeviewtaskinbox}}
+    {{> aortimeviewtaskinbox_item}}
+    {{/each}}
+    {{/unless}} <!-- hasaorfocus -->
+    {{#if timeviewproject}}
+    {{#with timeviewproject}}
+    {{#each timeviewprojectinboxitems}}
+    {{> timeviewprojectinbox}}
+    {{/each}}
+    {{> timeviewprojectitem}}
+    {{/with}} <!-- timeviewproject -->
+    {{/if}} <!-- timeviewproject -->
+    {{/if}} <!-- reviewmodeenergylevelinboxonly -->
+    {{#if review1}}
+    {{#with reviewchecklistitems}}
+    {{> orgtask_todo_item}}
+    {{/with}} <!-- reviewchecklistitems -->
+    {{/if}} <!-- review1 -->
+    {{#if review2}}
+    {{#with reviewkickstarterlessprojects}}
+    {{> project_item}}
+    {{/with}} <!-- reviewkickstarterlessprojects -->
+    {{/if}} <!-- review2 -->
+    {{#if review3}}
+    {{#with reviewnonchecklistitems}}
+    {{> orgtask_todo_item}}
+    {{/with}} <!-- reviewnonchecklistitems -->
+    {{/if}} <!-- review3 -->
+    {{/if}} <!-- domode -->
+    {{/unless}} <!-- calendaronly -->
+
+    {{#each upcomingcalendartasks}}
+    
+    {{> calendartask}}
+
+    {{/each}}
+
+</ul>
+
+<!-- load more -->
+  {{#if Template.subscriptionsReady}}
+    {{#if hasMorePosts}}
+      <p><a class="load-more-calendar">Load More</a></p>
+    {{/if}}
+  {{else}}
+    <div class="loading">{{>spinner}}</div>
+  {{/if}}
+<!-- end of load more -->
+
+<!-- load more -->
+  {{#if Template.subscriptionsReady}}
+    {{#if hasFewerPosts}}
+      <p><a class="load-fewer-calendar">Load Fewer</a></p>
+    {{/if}}
+  {{/if}}
+<!-- end of load more -->
+ 
+</template>
+

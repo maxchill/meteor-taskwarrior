@@ -19,12 +19,17 @@ Template.categories.events({
   },
 });
 
-Template.categories.process_status = function () {
-  return Session.equals('process_status',true) ? 'active' : ''
-}
-Template.categories.organize_status = function () {
-  return Session.equals('organize_status',true) ? 'active' : ''
-}
-Template.categories.do_status = function () {
-  return Session.equals('do_status',true) ? 'active' : ''
-}
+Template.categories.helpers({
+  inboxstuff: function () {
+    return Taskspending.findOne({tags: "inbox"})
+  },
+  process_status: function () {
+    return Session.equals('process_status',true) ? 'active' : ''
+  },
+  organize_status: function () {
+    return Session.equals('organize_status',true) ? 'active' : ''
+  },
+  do_status: function () {
+    return Session.equals('do_status',true) ? 'active' : ''  
+  },
+})

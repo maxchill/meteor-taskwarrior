@@ -1,0 +1,27 @@
+<template name="process">
+<h3>Inbox ({{inboxcount}})</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse closeinboxsection">+</div>
+  {{#if is_processing}}
+    {{> processingdialog}}
+
+    <ul id="task_list">
+      {{#each tasks}}
+        {{#if waiting}}
+        {{else}}
+          {{> todo_item}}
+        {{/if}}
+      {{/each}}
+    </ul>
+
+<!-- load more -->
+  {{#if Template.subscriptionsReady}}
+    {{#if hasMorePosts}}
+      <p><a class="load-more-unprocessed">Load More</a></p>
+    {{/if}}
+  {{else}}
+    <div class="loading">{{>spinner}}</div>
+  {{/if}}
+<!-- end of load more -->
+
+
+  {{/if}}
+</template>

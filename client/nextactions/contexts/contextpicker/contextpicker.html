@@ -1,0 +1,35 @@
+<template name="contextpicker">
+{{#unless fullmulticontext}}
+<h3>Contexts</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse closenextactionssection">+</div>
+{{/unless}}
+{{#each contextcategories}}
+{{#if hascontexts}}
+<h5 class="clearfix">{{description}}</h5>
+<ul id="contextpicker">
+{{#each contexts}}
+{{#unless in_multicontext}}
+<li><h6><div class="btn btn-inverse">-</div> {{context}} ({{count}})</h6></li><button type="button" class="contcip close" id="{{_id}}">focus</button><button type="button" class="contclose close" id="{{_id}}">hide</button>
+ {{#if editing_contextlocation}}
+  <div class="editing_contextlocation">
+    <input type="text" id="editing-contextlocation" placeholder="{{contextlocation}}" />
+  </div>
+  {{else}}
+  <div class="contextlocation btn btn-inverse" id="btnContextLocation">Context Location</div>
+  {{/if}}
+{{/unless}}
+{{/each}}
+</ul>
+{{/if}}
+{{/each}}
+
+<!-- load more -->
+  {{#if Template.subscriptionsReady}}
+    {{#if hasMorePosts}}
+      <p><a class="load-more-contextpicker">Load More</a></p>
+    {{/if}}
+  {{else}}
+    <div class="loading">{{>spinner}}</div>
+  {{/if}}
+<!-- end of load more -->
+
+</template>

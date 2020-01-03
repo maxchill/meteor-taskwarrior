@@ -1,0 +1,67 @@
+<template name="processingdialog">
+{{#if processing_task}}
+{{#with tasks}}
+<div class="processingdialog">
+ <div class="mask"> </div>
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="close cancel">&times;</button>
+      <h3>{{description}}</h3>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="btn btn-inverse {{mitornot}} mit">MIT</div>
+      <div class="btn btn-primary trash">Trash/Done</div>
+      <div class="btn btn-primary archive">Archive</div>
+{{#if projwithnolargeroutcome}}
+      <div class="btn btn-primary largeroutcome">This is a Larger Outcome</div>
+{{/if}}
+{{#if contextwithnolargercontext}}
+      <div class="btn btn-primary largercontext">This is a Larger Context</div>
+{{/if}}
+      <h6>Name of project (no spaces) if part of a project or multi-step</h6>
+{{> project_picker}}
+
+      <h6>Is it due on a specific date and can't be rescheduled?</h6>
+{{#if has_duedate}}
+
+<form class="form-inline" role="form">
+    <div class="form-group">
+      <input class="form-control duedate span5" type="text" id="duedate" placeholder="{{due}}">
+    </div>
+</form>
+
+{{else}}
+
+<form class="form-inline" role="form">
+    <div class="form-group">
+      <input class="form-control duedate span5" type="text" id="duedate">
+    </div>
+</form>
+
+{{/if}}
+
+
+      <h6>Is it a task to be done in a specific context?</h6>
+{{> context_picker}}
+
+      <div class="btn btn-primary somedaymaybe">Someday/Maybe</div>
+      <div class="btn btn-primary defer">Defer</div>
+
+
+
+      {{#if error}}
+        <div class="alert alert-error">Errors go here</div>
+      {{/if}}
+    </div>
+
+    <div class="modal-footer">
+      <span style="font-size:1.9em; color: orange; float: left;">{{taskcounter}}</span><span style="float: left; margin-left:5px;"> in the Organize tab</span>
+    </div>
+  </div>
+</div>
+{{/with}}
+{{/if}}
+</template>
+

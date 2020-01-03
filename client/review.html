@@ -1,0 +1,128 @@
+<template name="review">
+  {{#if is_reviewing}}
+    {{> processingdialog}}
+    {{> alarmprocessingdialog}}
+    {{> documenteditingdialog}}
+    {{> checklisteditingdialog}}
+    {{> alarmseteditingdialog}}
+
+{{> pikaday}}
+
+{{#if hasaorfocus}}
+<div style='text-align: center; z-index: 4; left: 30%; width: 20%; padding: 20px; position: fixed; background: blue; font-size: 2em'>{{aorfocus}}</div>
+{{/if}}
+
+{{#unless timeviewhidden}}
+{{> nextactions}}
+{{/unless}}
+
+{{#unless inboxhidden}}
+{{> process}}
+{{/unless}}
+
+{{#unless nextactionshidden}}
+{{#if wipshidden}}
+<h3>WIPs</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openwipssection">-</div>
+{{/if}}
+{{#unless wipshidden}}
+{{> workinprogress}}
+{{/unless}}
+{{#if mitshidden}}
+<h3>MITs</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openmitssection">-</div>
+{{/if}}
+{{#unless mitshidden}}
+{{> mostimportanttasks}}
+{{/unless}}
+
+{{> focuscontextpicker}}
+{{> focusmulticontext}}
+{{> contextpicker}}
+{{> multicontext}}
+{{/unless}}
+
+{{#unless readandreviewhidden}}
+{{> readandreview}}
+{{/unless}}
+
+{{#unless waitingforshidden}}
+{{> waitingfors}}
+{{/unless}}
+
+{{#unless projectshidden}}
+{{> focusprojectslist}}
+{{> projectslist}}
+{{/unless}}
+
+{{#unless projectlesssomedaymaybeshidden}}
+{{> projectlesssomedaymaybes}}
+{{#unless somedaymaybeprojectshidden}}
+{{> somedaymaybeprojects}}
+{{/unless}}
+{{#if somedaymaybeprojectshidden}}
+<h3>Someday/Maybe</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse opensomedaymaybeprojectssection">-</div>
+{{/if}}
+{{#unless inactivecontextshidden}}
+{{> inactivecontextpicker}}
+{{/unless}}
+{{#if inactivecontextshidden}}
+<h3>Someday/Maybe Contexts</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openinactivecontextssection">-</div>
+{{/if}}
+{{/unless}}
+
+{{#unless weeklyreviewhidden}}
+{{> weeklyreview}}
+{{#if contextcategorieshidden}}
+<h3>Context Categories</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse opencontextcategoriessection">-</div>
+{{/if}}
+{{#unless contextcategorieshidden}}
+{{> contextcategories}}
+{{/unless}}
+{{#if perspectivehidden}}
+<h3>Perspective</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openperspectivesection">-</div>
+{{/if}}
+{{#unless perspectivehidden}}
+{{> perspective}}
+{{/unless}}
+{{#if statisticshidden}}
+<h3>Statistics</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openstatisticssection">-</div>
+{{/if}}
+{{#unless statisticshidden}}
+{{> statistics}}
+{{/unless}}
+{{/unless}}
+
+{{#if inboxhidden}}
+<h3>Inbox</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openinboxsection">-</div>
+{{/if}}
+
+{{#if nextactionshidden}}
+<h3>Next Actions</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse opennextactionssection">-</div>
+{{/if}}
+
+{{#if readandreviewhidden}}
+<h3>Read and Review</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openreadandreviewsection">-</div>
+{{/if}}
+
+{{#if waitingforshidden}}
+<h3>Waiting Fors</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openwaitingforssection">-</div>
+{{/if}}
+
+{{#if projectshidden}}
+<h3>Projects</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openprojectssection">-</div>
+{{/if}}
+
+{{#if projectlesssomedaymaybeshidden}}
+<h3>Someday/Maybes</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openprojectlesssomedaymaybessection">-</div>
+{{/if}}
+
+{{#if weeklyreviewhidden}}
+<h3>Weekly Review</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openweeklyreviewsection">-</div>
+{{/if}}
+
+{{/if}}
+
+</template>
+
+<template name="pikaday">
+  <input type="text" id="datepicker">
+</template>

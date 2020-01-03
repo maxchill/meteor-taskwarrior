@@ -1,5 +1,6 @@
 <head>
   <title>meteor-taskwarrior</title>
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, minimal-ui, maximum-scale=1, minimum-scale=1">
 </head>
 
 <body>
@@ -8,15 +9,32 @@
       {{> loginButtons align="left"}}
     </div>
     <div id="categories-container">
+      {{> status}}
       {{> categories}}
+      {{> date}}
     </div>
     <div id="list">
-      {{> process}}
-      {{> organize}}
-      {{> review}}
-      {{> do}}
+      {{> review}} 
     </div>
     <div id="sync">
     </div>
   </div>
 </body>
+
+<template name="mapview">
+{{#unless maphidden}}
+  <p class="clearboth"><input type="button" value="Clear" id="clearButton"></p>
+<div style="float: right; position: relative; top: 35px; right: 100px; z-index: 1;" class="btn btn-inverse closemapsection">+</div>
+
+  <div id="map-canvas"></div>
+<div style="float: right; position: relative; top: 5px; right: 100px; z-index: 1;" class="btn btn-inverse choosewalking {{walking}}">W</div>
+<div style="float: right; position: relative; top: 5px; right: 100px; z-index: 1;" class="btn btn-inverse choosedriving {{driving}}">D</div>
+<div style="float: right; position: relative; top: 5px; right: 100px; z-index: 1;" class="btn btn-inverse choosepublictransportation {{publictransportation}}">PT</div>
+<div style="float: right; position: relative; top: 5px; right: 100px; z-index: 1;" class="btn btn-inverse choosebicycling {{biking}}">B</div>
+  <div id="directions-panel"></div>
+{{/unless}}
+{{#if maphidden}}
+<h3>Map</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse openmapsection">-</div>
+{{/if}}
+
+</template>

@@ -1,0 +1,29 @@
+/* CSS declarations go here */
+#map-canvas {
+  height: 500px;
+  width: 400px;
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+#directions-panel {
+  max-height: 500px;
+  float: left;
+  width: 100%;
+  overflow: auto;
+  clear: both;
+  display: inline-block;
+  position: relative;
+}
+
+.warnbox-c1, .warnbox-c2, .warnbox-content {
+  display: none !important;
+}
+
+.clearboth {
+clear: both;
+}

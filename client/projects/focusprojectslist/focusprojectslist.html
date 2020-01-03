@@ -1,0 +1,32 @@
+<template name="focusprojectslist">
+
+<h3>Projects in Progress</h3><div style="float: left; position: relative; top: 15px; left: 5px;" class="btn btn-inverse closeprojectssection">+</div>
+    <ul id="focusproject_list" class="main-review">
+      {{#each kickstarterlessprojects}}
+<div class="active-project {{nokickstart}}">
+          {{> oldproject_item}}
+{{> oldopenproject}}
+
+</div> <!-- active project -->
+      {{/each}}
+      {{#each projects}}
+<div class="active-project">
+          {{> oldproject_item}}
+{{> oldopenproject}}
+
+</div> <!-- active project -->
+
+      {{/each}}
+    </ul>
+
+<!-- load more -->
+  {{#if Template.subscriptionsReady}}
+    {{#if hasMorePosts}}
+      <p><a class="load-more-focusprojects">Load More</a></p>
+    {{/if}}
+  {{else}}
+    <div class="loading">{{>spinner}}</div>
+  {{/if}}
+<!-- end of load more -->
+
+</template>
